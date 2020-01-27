@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Loader from "react-loader-spinner";
 
-import { getData } from "../api";
+import { getData } from "../api"; // getData is the component making the API call
 import "./star-wars-characters.css";
 
 export default function StarWarsCharacters() {
@@ -10,6 +10,8 @@ export default function StarWarsCharacters() {
   const [next, setNext] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [characters, setCharacters] = useState([]);
+
+  // This code
   useEffect(() => {
     setIsLoading(true);
     const getCharacters = async () => {
@@ -44,11 +46,11 @@ export default function StarWarsCharacters() {
           timeout={3000} //3 secs
         />
       ) : (
-        <>
+        <React.Fragment>
           {characters.map(character => (
             <div key={character.url}>{character.name}</div>
           ))}
-        </>
+        </React.Fragment>
       )}
       <div className="buttons">
         <button onClick={goToPrevious} disabled={!previous}>
